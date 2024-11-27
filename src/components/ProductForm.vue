@@ -30,8 +30,6 @@ const onSubmit = () => {
   productName.value = "";
   quantity.value = null;
 };
-
-
 </script>
 
 <template>
@@ -57,7 +55,7 @@ const onSubmit = () => {
           min="1"
           placeholder="Podaj ilość" />
       </div>
-      <button type="submit" :disabled="!isFormValid"> <img style="padding-right: 0.5rem;" src="../assets/add_box.svg" alt="Add icon" />Dodaj nowy produkt</button>
+      <button type="submit"> <img class="add-icon" src="../assets/add_box.svg" alt="Add icon" />Dodaj nowy produkt</button>
     </form>
   </div>
 </template>
@@ -134,6 +132,10 @@ button:hover {
   button {
     width: 100%;
     margin-top: 2rem;
+  }
+
+  .add-icon {
+    padding-right: 0.5rem;
   }
 }
 </style>

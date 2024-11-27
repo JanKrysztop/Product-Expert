@@ -51,7 +51,7 @@ describe("Product Store", () => {
       quantity: 321,
     })
   })
-  it("handles non existent product deletion", () => {
+  it("handles non existent product update", () => {
     console.error = vi.fn()
     store.updateProduct(123, {
       name: "Non-existent Product",
