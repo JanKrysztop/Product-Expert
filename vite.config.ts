@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [vue()], 
   test: {
     globals: true,
-    environment: 'jsdom', // Simulates a DOM environment
+    environment: 'jsdom',
   },
 })
