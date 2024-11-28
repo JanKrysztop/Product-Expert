@@ -64,6 +64,7 @@ const handleSubmit = () => {
             @click="onDelete(formData.id)">
             <svg
               class="del-icon"
+              alt="Delete Icon"
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
               viewBox="0 -960 960 960"
@@ -74,7 +75,10 @@ const handleSubmit = () => {
             </svg>
             Usuń produkt
           </button>
-          <button type="submit" class="btn save">Aplikuj zmiany</button>
+          <button type="submit" class="btn save">
+            <img src="../assets/pencil.svg" alt="Edit icon" />
+            Aplikuj zmiany
+          </button>
         </div>
       </form>
     </div>

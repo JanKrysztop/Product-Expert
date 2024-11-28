@@ -33,11 +33,18 @@ const totalQuantity = computed(() =>
 
 const toggleSort = (key: string) => {
   if (sortKey.value === key) {
-    sortOrder.value = sortOrder.value === "asc" ? "desc" : null
-    if (!sortOrder.value) sortKey.value = null
+    if (key === "name") {
+      sortOrder.value = sortOrder.value === "asc" ? "desc" : sortOrder.value === "desc" ? null : "asc"
+    } else if (key === "quantity") {
+      sortOrder.value = sortOrder.value === "desc" ? "asc" : sortOrder.value === "asc" ? null : "desc"
+    }
+
+    if (!sortOrder.value) {
+      sortKey.value = null
+    }
   } else {
     sortKey.value = key
-    sortOrder.value = "asc"
+    sortOrder.value = key === "quantity" ? "desc" : "asc"
   }
 }
 
@@ -109,8 +116,8 @@ const saveChanges = (updatedProduct: Product) => {
           <td colspan="1">{{ product.name }}</td>
           <td colspan="1" align="right">{{ product.quantity }}</td>
           <td colspan="1" align="center">
-            <button @click="openEditModal(product)">
-              <img src="../assets/edit.svg" alt="Edit icon" />
+            <button class="edit-btn" @click="openEditModal(product)">
+              <svg alt="Edit icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M80 0v-160h800V0H80Zm160-320h56l312-311-29-29-28-28-311 312v56Zm-80 80v-170l448-447q11-11 25.5-17t30.5-6q16 0 31 6t27 18l55 56q12 11 17.5 26t5.5 31q0 15-5.5 29.5T777-687L330-240H160Zm560-504-56-56 56 56ZM608-631l-29-29-28-28 57 57Z"/></svg>
             </button>
           </td>
         </tr>
@@ -181,5 +188,9 @@ button {
 
 .sort-button.active img {
   opacity: 1;
+}
+
+.edit-btn svg:hover {
+  fill: #000;
 }
 </style>
