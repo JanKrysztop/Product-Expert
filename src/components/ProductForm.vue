@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue"
-import { useProductStore } from "../stores/product";
+import { useProductStore } from "../stores/product"
 
 const productStore = useProductStore()
 
@@ -13,23 +13,23 @@ const isFormValid = computed(
 
 const onSubmit = () => {
   if (!isFormValid.value) {
-    console.error("Form is invalid. Please fill in all fields.");
-    return;
+    console.error("Form is invalid. Please fill in all fields.")
+    return
   }
 
   productStore.addProduct({
     name: productName.value,
     quantity: quantity.value!,
-  });
+  })
 
   console.log("New product added", {
     name: productName.value,
     quantity: quantity.value,
-  });
+  })
 
-  productName.value = "";
-  quantity.value = null;
-};
+  productName.value = ""
+  quantity.value = null
+}
 </script>
 
 <template>
@@ -55,7 +55,10 @@ const onSubmit = () => {
           min="1"
           placeholder="Podaj ilość" />
       </div>
-      <button type="submit"> <img class="add-icon" src="../assets/add_box.svg" alt="Add icon" />Dodaj nowy produkt</button>
+      <button type="submit">
+        <img class="add-icon" src="../assets/add_box.svg" alt="Add icon" />Dodaj
+        nowy produkt
+      </button>
     </form>
   </div>
 </template>
@@ -113,8 +116,8 @@ button:hover {
 }
 
 .add-icon {
-    padding-right: 0.5rem;
-  }
+  padding-right: 0.5rem;
+}
 
 @media (max-width: 768px) {
   .product-form {
@@ -137,7 +140,5 @@ button:hover {
     width: 100%;
     margin-top: 2rem;
   }
-
-
 }
 </style>

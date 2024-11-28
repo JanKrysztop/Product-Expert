@@ -1,21 +1,25 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue"
 import { useProductStore } from "../stores/product"
+import type { Product } from "../types/product"
+import Modal from "./EditModal.vue"
 
-type ProductKey = 'id' | 'name' | 'quantity';
+type ProductKey = "id" | "name" | "quantity"
 const store = useProductStore()
 
 const sortKey = ref<string | null>(null)
 const sortOrder = ref<"asc" | "desc" | null>(null)
+const isModalVisible = ref(false)
+const currentProduct = ref<Product | null>(null)
 
 const sortedProducts = computed(() => {
   const products = [...store.products]
   if (!sortKey.value) return products
 
-  const key = sortKey.value as ProductKey;
+  const key = sortKey.value as ProductKey
   return products.sort((a, b) => {
-    const valA = a[key];
-    const valB = b[key];
+    const valA = a[key]
+    const valB = b[key]
 
     if (valA < valB) return sortOrder.value === "asc" ? -1 : 1
     if (valA > valB) return sortOrder.value === "asc" ? 1 : -1
@@ -37,8 +41,16 @@ const toggleSort = (key: string) => {
   }
 }
 
-const onDelete = (id: number) => {
-  store.deleteProduct(id)
+const openEditModal = (product: Product) => {
+  currentProduct.value = { ...product }
+  isModalVisible.value = true
+}
+
+const saveChanges = (updatedProduct: Product) => {
+  if (updatedProduct.id != null) {
+    store.updateProduct(updatedProduct.id, updatedProduct)
+  }
+  isModalVisible.value = false
 }
 </script>
 
@@ -47,14 +59,17 @@ const onDelete = (id: number) => {
     <table>
       <thead>
         <tr>
-          <th align="left">       
+          <th align="left">
             <button
               @click="toggleSort('name')"
               class="sort-button"
               :class="{ active: sortKey === 'name' }">
               Nazwa produktu
               <img
-                v-show="(sortKey === 'name' && sortOrder === 'desc') || sortKey !== 'name'"
+                v-show="
+                  (sortKey === 'name' && sortOrder === 'desc') ||
+                  sortKey !== 'name'
+                "
                 src="../assets/chevron_down.svg"
                 alt="Sort descending icon" />
               <img
@@ -70,7 +85,10 @@ const onDelete = (id: number) => {
               :class="{ active: sortKey === 'quantity' }">
               Ilość
               <img
-                v-show="(sortKey === 'quantity' && sortOrder === 'desc') || sortKey !== 'quantity'"
+                v-show="
+                  (sortKey === 'quantity' && sortOrder === 'desc') ||
+                  sortKey !== 'quantity'
+                "
                 src="../assets/chevron_down.svg"
                 alt="Sort descending icon" />
               <img
@@ -91,7 +109,7 @@ const onDelete = (id: number) => {
           <td colspan="1">{{ product.name }}</td>
           <td colspan="1" align="right">{{ product.quantity }}</td>
           <td colspan="1" align="center">
-            <button  @click="onDelete(product.id)" >
+            <button @click="openEditModal(product)">
               <img src="../assets/edit.svg" alt="Edit icon" />
             </button>
           </td>
@@ -102,6 +120,13 @@ const onDelete = (id: number) => {
         </tr>
       </tbody>
     </table>
+    <Modal
+      v-if="isModalVisible"
+      :isVisible="isModalVisible"
+      :title="'Edycja Produktu'"
+      :initialFormData="currentProduct"
+      @close="isModalVisible = false"
+      @save="saveChanges" />
   </div>
 </template>
 
@@ -114,6 +139,7 @@ table {
   width: 100%;
   max-width: 60rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   border-collapse: collapse;
   font-family: inherit;
 }
@@ -121,21 +147,21 @@ table {
 th,
 td {
   padding: 0.75rem;
-  border: 1px solid red;
+  border: 2px solid #ebebeb;
 }
 th {
   font-size: 1rem;
   font-weight: 500;
-  background-color: #f6f6f6;
+  background-color: #ebebeb;
 }
 td {
-  border: 1px solid red;
+  border: 2px solid #ebebeb;
 }
 
 button {
   display: flex;
   align-items: center;
-    font-size: 1rem;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
   background: none;
