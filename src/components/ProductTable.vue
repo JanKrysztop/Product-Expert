@@ -167,6 +167,10 @@ th {
 }
 td {
   border: 2px solid #ebebeb;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  max-width: 200px;
 }
 
 button {

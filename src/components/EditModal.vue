@@ -38,18 +38,18 @@ const handleSubmit = () => {
       <form @submit.prevent="handleSubmit">
         <div class="modal-body">
           <div class="form-group">
-            <label for="productName">Nazwa produktu</label>
+            <label for="edit_productName">Nazwa produktu</label>
             <input
-              id="productName"
+              id="edit_productName"
               v-model="formData.name"
               type="text"
               required
               placeholder="Podaj nazwę produktu" />
           </div>
           <div class="form-group">
-            <label for="quantity">Ilość</label>
+            <label for="edit_quantity">Ilość</label>
             <input
-              id="quantity"
+              id="edit_quantity"
               v-model.number="formData.quantity"
               type="number"
               required
@@ -62,8 +62,7 @@ const handleSubmit = () => {
             type="button"
             class="btn delete"
             @click="onDelete(formData.id)"
-            aria-label="Delete"
-            >
+            aria-label="Delete">
             <svg
               class="del-icon"
               alt="Delete Icon"
@@ -78,7 +77,7 @@ const handleSubmit = () => {
             Usuń produkt
           </button>
           <button type="submit" class="btn save" aria-label="Save">
-            <img src="../assets/pencil.svg" alt="Edit icon" />
+            <img class="edit-icon" src="../assets/pencil.svg" alt="Edit icon" />
             Aplikuj zmiany
           </button>
         </div>
@@ -203,6 +202,10 @@ input {
 
 .btn.delete:hover .del-icon:first-of-type {
   fill: #fff;
+}
+
+.edit-icon {
+  padding-right: 0.5rem;
 }
 
 @media (max-width: 768px) {

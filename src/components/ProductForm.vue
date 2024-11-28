@@ -34,7 +34,10 @@ const onSubmit = () => {
 
 <template>
   <div class="form-wrapper">
-    <h2>Dodawanie produktu</h2>
+    <div class="header-container">
+      <h2>Dodawanie produktu</h2>
+      <h1><span>product</span> expert <img class="logo" src="/logo.svg" /></h1>
+    </div>
     <form @submit.prevent="onSubmit" class="product-form">
       <div class="form-group">
         <label for="productName">Nazwa produktu</label>
@@ -119,6 +122,28 @@ button:hover {
   padding-right: 0.5rem;
 }
 
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 {
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+span {
+  color: #fff200;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .product-form {
     gap: 1rem;
@@ -139,6 +164,28 @@ button:hover {
   button {
     width: 100%;
     margin-top: 2rem;
+  }
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .logo {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-self: flex-end;
+    order: -1;
   }
 }
 </style>
