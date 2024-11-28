@@ -64,6 +64,7 @@ const onSubmit = () => {
 .form-wrapper {
   max-width: 100%;
   padding: 1rem;
+  color: #fff;
   background-color: #000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -77,7 +78,6 @@ const onSubmit = () => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  color: #fff;
   font-weight: 500;
 }
 
@@ -98,12 +98,12 @@ button {
   min-width: 200px;
   height: 2.75rem;
   padding: 0.5rem 1.25rem;
-  font-size: 1rem;
   color: #000;
   background-color: #fff200;
   border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
 }
@@ -111,6 +111,10 @@ button {
 button:hover {
   background-color: #fff87f;
 }
+
+.add-icon {
+    padding-right: 0.5rem;
+  }
 
 @media (max-width: 768px) {
   .product-form {
@@ -134,8 +138,6 @@ button:hover {
     margin-top: 2rem;
   }
 
-  .add-icon {
-    padding-right: 0.5rem;
-  }
+
 }
 </style>
