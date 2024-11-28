@@ -31,7 +31,7 @@ const handleSubmit = () => {
 <template>
   <div v-if="isVisible" class="modal-overlay">
     <div class="modal-content">
-      <button class="close-btn" @click="closeModal">
+      <button class="close-btn" @click="closeModal" aria-label="Close">
         <img src="../assets/close.svg" alt="Close icon" />
       </button>
       <h2 class="modal-header">{{ title }}</h2>
@@ -61,7 +61,9 @@ const handleSubmit = () => {
           <button
             type="button"
             class="btn delete"
-            @click="onDelete(formData.id)">
+            @click="onDelete(formData.id)"
+            aria-label="Delete"
+            >
             <svg
               class="del-icon"
               alt="Delete Icon"
@@ -75,7 +77,7 @@ const handleSubmit = () => {
             </svg>
             Usuń produkt
           </button>
-          <button type="submit" class="btn save">
+          <button type="submit" class="btn save" aria-label="Save">
             <img src="../assets/pencil.svg" alt="Edit icon" />
             Aplikuj zmiany
           </button>

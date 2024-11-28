@@ -55,7 +55,7 @@ const onSubmit = () => {
           min="1"
           placeholder="Podaj ilość" />
       </div>
-      <button type="submit">
+      <button type="submit" aria-label="Submit">
         <img class="add-icon" src="../assets/add_box.svg" alt="Add icon" />Dodaj
         nowy produkt
       </button>
